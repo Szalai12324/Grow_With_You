@@ -1,0 +1,107 @@
+/* A táblázatot tartalmazó doboz */
+.admin-table-container {
+    width: 100%;
+    overflow-x: auto;
+    background-color: white;
+    padding: 10px;
+}
+
+/* Maga a táblázat */
+.admin-product-table {
+    width: 100%;
+    /* 🚀 EZ A TRÜKK: Ez engedi, hogy a fejléc széle lekerekített legyen! */
+    border-collapse: separate; 
+    border-spacing: 0; 
+    text-align: center; /* A 2. képen is középre van igazítva minden */
+    font-family: 'Inter', 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; /* Modern betűtípus */
+}
+
+/* =========================================
+   🚀 A FEJLÉC DIZÁJN (Mint a referenciaképen)
+   ========================================= */
+.admin-product-table th {
+    background-color: #f4f5f7; /* Szép, lágy világosszürke háttér */
+    color: #334155; /* Sötét kékesszürke betűszín */
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    padding: 16px 10px;
+    letter-spacing: 0.05em; /* Pici térköz a betűk közé az eleganciáért */
+    
+    /* Vékony, alig látható szegély felül és alul */
+    border-top: 1px solid #e9ecef;
+    border-bottom: 1px solid #e9ecef;
+}
+
+/* A fejléc BAL szélének lekerekítése */
+.admin-product-table th:first-child {
+    border-top-left-radius: 8px;
+    border-bottom-left-radius: 8px;
+    border-left: 1px solid #e9ecef;
+}
+
+/* A fejléc JOBB szélének lekerekítése */
+.admin-product-table th:last-child {
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
+    border-right: 1px solid #e9ecef;
+}
+
+/* =========================================
+   A TERMÉK SOROK (Test)
+   ========================================= */
+.admin-product-table td {
+    padding: 18px 10px;
+    border-bottom: 1px solid #f1f5f9; /* Nagyon halvány elválasztó vonal a sorok között */
+    vertical-align: middle;
+    color: #1e293b;
+    font-size: 0.9rem;
+}
+
+/* Amikor az egeret ráviszed egy termékre, picit besötétedik a sora */
+.admin-product-table tbody tr:hover td {
+    background-color: #f8fafc;
+    transition: background-color 0.2s ease;
+}
+
+/* Név és leírás stílusok a cellán belül */
+.admin-product-name {
+    font-weight: bold;
+    color: #0f172a;
+    margin-bottom: 4px;
+}
+
+.admin-product-desc {
+    color: #64748b;
+    font-size: 0.8rem;
+}
+
+/* Készlet "jelvények" formázása */
+.stock-badge {
+    padding: 4px 10px;
+    border-radius: 12px;
+    font-size: 0.75rem;
+    font-weight: bold;
+    display: inline-block;
+}
+
+.stock-badge.in-stock {
+    background-color: #d1fae5;
+    color: #065f46;
+}
+
+.stock-badge.out-of-stock {
+    background-color: #fee2e2;
+    color: #991b1b;
+}
+
+/* A link stílusa */
+.admin-product-table a {
+    color: #0284c7;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.admin-product-table a:hover {
+    text-decoration: underline;
+}

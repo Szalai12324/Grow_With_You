@@ -1,0 +1,185 @@
+/* productUpload.css */
+
+.product-upload-container {
+    background-color: #ffffff; /* Tiszta fehér kártya */
+    padding: 50px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03); /* Finom árnyék, mint a modern adminokon */
+    border: 1px solid #e5e7eb;
+    max-width: 900px;
+    margin: 0 auto;
+    font-family: Arial, sans-serif;
+}
+
+.product-upload-title {
+    color: #1f2937;
+    margin-top: 0;
+    margin-bottom: 25px;
+    font-size: 22px;
+    border-bottom: 1px solid #e5e7eb; /* Elválasztó vonal a cím alatt */
+    padding-bottom: 15px;
+}
+
+.product-upload-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px; /* Távolság a mezők között */
+}
+
+/* Sorba rendező konténer (hogy pl. az ár és készlet egymás mellett legyen) */
+.form-row {
+    display: flex;
+    gap: 15px;
+    width: 100%;
+}
+
+.half-width { flex: 1; }
+.third-width { flex: 1; }
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.form-group label {
+    font-size: 14px;
+    font-weight: bold;
+    color: #4b5563; /* Sötétszürke feliratok */
+}
+
+.form-input, .form-textarea {
+    padding: 10px 14px;
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+    font-size: 14px;
+    color: #1f2937;
+    background-color: #fcfcfc;
+    transition: all 0.2s ease;
+}
+
+/* Amikor belekattintasz a mezőbe */
+.form-input:focus, .form-textarea:focus {
+    outline: none;
+    border-color: #0ea5e9; /* Szép kék keret */
+    background-color: #ffffff;
+    box-shadow: 0 0 0 3px rgba(14, 165, 233, 0.15); /* Kék ragyogás körülötte */
+}
+
+.form-textarea {
+    min-height: 100px;
+    resize: vertical; /* Csak függőlegesen lehessen húzni */
+}
+
+/* A fájl tallózó gomb dizájnolása */
+.file-input {
+    font-size: 14px;
+    color: #4b5563;
+    cursor: pointer;
+}
+
+.file-input::file-selector-button {
+    padding: 8px 16px;
+    border-radius: 6px;
+    border: 1px solid #d1d5db;
+    background-color: #f9fafb;
+    color: #4b5563;
+    font-weight: bold;
+    cursor: pointer;
+    margin-right: 15px;
+    transition: background-color 0.2s;
+}
+
+.file-input::file-selector-button:hover {
+    background-color: #e5e7eb;
+}
+
+/* A kiválasztott képek listája */
+.image-preview-list {
+    background-color: #f8fafc;
+    border: 1px dashed #cbd5e1;
+    border-radius: 6px;
+    padding: 10px 15px;
+}
+
+.image-preview-list p {
+    margin: 0 0 8px 0;
+    font-size: 13px;
+    font-weight: bold;
+    color: #64748b;
+}
+
+.image-preview-list ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.image-preview-list li {
+    font-size: 13px;
+    color: #334155;
+}
+
+/* A nagy beküldés gomb */
+.submit-button {
+    margin-top: 15px;
+    padding: 12px;
+    background-color: #0369a1; /* Ugyanaz a kék, mint a menü aktív szövege */
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-weight: bold;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.2s, transform 0.1s;
+}
+
+.submit-button:hover {
+    background-color: #0284c7; /* Kicsit sötétebb kék hoverre */
+}
+
+.submit-button:active {
+    transform: scale(0.98); /* Kattintáskor picit összemegy */
+}
+
+/* --- ÚJ ÉRTESÍTÉS DIZÁJN --- */
+.custom-notification {
+    padding: 12px 20px;
+    margin-bottom: 20px;
+    border-radius: 6px;
+    color: white;
+    font-weight: bold;
+    font-size: 14px;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    
+    /* Pici animáció, hogy fentről csússzon be */
+    animation: slideDown 0.3s ease-out;
+}
+
+/* Sikeres zöld */
+.custom-notification.success {
+    background-color: #10b981; 
+    border: 1px solid #059669;
+}
+
+/* Hibás piros */
+.custom-notification.error {
+    background-color: #ef4444; 
+    border: 1px solid #b91c1c;
+}
+
+/* Az animáció logikája */
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

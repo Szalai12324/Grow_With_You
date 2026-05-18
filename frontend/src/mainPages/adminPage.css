@@ -1,0 +1,87 @@
+/* adminPage.css */
+
+.admin-page {
+    display: flex; /* 🚀 EZ A VARÁZSSZÓ: Ezt teszi a menüt és a tartalmat egymás mellé! */
+    min-height: 100vh;
+    width: 100%;
+    background-color: #f8fafc; /* Halványszürke háttér a tartalomnak */
+    margin: 0;
+    padding: 0;
+}
+
+.content {
+    flex: 1; /* Ez mondja meg a tartalomnak, hogy nyújtózzon el a maradék üres helyen */
+    padding: 40px;
+    height: 100vh;
+    overflow-y: auto; /* Ha sok a termék vagy hosszú az űrlap, itt lehessen görgetni, miközben a menü fix marad */
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center; 
+    align-items: flex-start;
+}
+
+/* A termékek menüpont fő tárolója */
+.products-manager {
+    display: flex;
+    flex-direction: column;
+    gap: 20px; /* Távolság a kártyák között */
+    width: 100%;
+    max-width: 1200px;
+}
+
+/* Maga a lenyíló kártya kerete */
+.collapsible-card {
+    background-color: white;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    overflow: hidden; /* Ne lógjon ki belőle semmi */
+}
+
+/* A kártya fejléce (kattintható rész) */
+.collapsible-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 25px;
+    background-color: #f8fafc;
+    cursor: pointer;
+    user-select: none; /* Ne lehessen véletlenül kijelölni a szöveget kattintáskor */
+    transition: background-color 0.2s ease;
+}
+
+.collapsible-header:hover {
+    background-color: #f1f5f9;
+}
+
+.collapsible-header h3 {
+    margin: 0;
+    font-size: 1.1rem;
+    color: #334155;
+}
+
+/* A kis nyíl a jobb szélén */
+.collapsible-header .arrow {
+    font-size: 1.2rem;
+    color: #64748b;
+}
+
+/* A kártya lenyíló teste (amiben a te komponenseid vannak) */
+.collapsible-body {
+    padding: 25px;
+    border-top: 1px solid #e2e8f0;
+    background-color: white;
+    /* Extra: animáció beúszáshoz */
+    animation: slideDown 0.3s ease-out;
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

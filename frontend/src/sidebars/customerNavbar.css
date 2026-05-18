@@ -1,0 +1,116 @@
+/* =========================================
+   A FŐ TÁROLÓ (Navbar)
+   ========================================= */
+.navbar-container {
+    display: flex;
+    justify-content: space-between; /* A három részt (logó, menü, ikonok) szétlöki a szélekre/középre */
+    align-items: center; /* Függőlegesen középre igazít mindent */
+    padding: 20px 50px; /* Tágas belső térköz: 20px alul-felül, 50px oldalt */
+    background-color: #ffffff; /* Fehér háttér */
+    border-bottom: 2px solid #f4f5f7; /* Egy nagyon halvány szürke vonal az aljára */
+    font-family: 'Inter', 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+}
+
+/* =========================================
+   BAL OLDAL: Logó
+   ========================================= */
+.navbar-logo {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+}
+
+.logo-text {
+    font-family: 'Caveat', 'Pacifico', cursive; /* Kézírásos betűtípus, hogy hasonlítson a képre */
+    font-size: 28px;
+    font-weight: bold;
+    color: #111827;
+}
+
+.logo-icon {
+    font-size: 24px;
+    color: #38bdf8; /* Kis világoskék akcentus */
+}
+
+/* =========================================
+   KÖZÉP: Menüpontok
+   ========================================= */
+.navbar-links {
+    display: flex;
+    list-style: none; /* Pöttyök eltüntetése */
+    margin: 0;
+    padding: 0;
+    gap: 30px; /* Távolság a szavak között */
+    align-items: center;
+}
+
+.navbar-links li {
+    font-size: 16px;
+    font-weight: 500;
+    color: #1f2937;
+    cursor: pointer;
+    transition: color 0.2s ease;
+}
+
+.navbar-links li:hover {
+    color: #6366f1;
+}
+
+/* A kék pirula ("Home") */
+.navbar-links li.active {
+    background-color: #bae6fd; /* Világoskék háttér */
+    color: #0369a1; /* Sötétebb kék szöveg */
+    padding: 8px 20px;
+    border-radius: 20px; /* Ettől lesz pirula alakú */
+}
+
+/* A piros akció ("Sale") */
+.navbar-links li.sale-text {
+    color: #ef4444; /* Piros betűszín */
+}
+
+/* =========================================
+   JOBB OLDAL: Ikonok és Kosár
+   ========================================= */
+.navbar-icons {
+    display: flex;
+    align-items: center;
+    gap: 24px; /* Távolság az ikonok között */
+}
+
+.navbar-icons button {
+    background: none;
+    border: none;
+    font-size: 22px; /* Ikonok mérete */
+    color: #1f2937;
+    cursor: pointer;
+    padding: 0;
+    display: flex;
+    transition: transform 0.2s ease;
+}
+
+.navbar-icons button:hover {
+    transform: scale(1.1); /* Picit megnő, ha ráviszed az egeret */
+}
+
+/* A kosár értesítő trükkje (A zöld 3-as bogyó) */
+.cart-container {
+    position: relative; /* Ez fontos! Ezen belül fogjuk pozicionálni a bogyót */
+}
+
+.cart-badge {
+    position: absolute;
+    top: -8px; /* Kicsit kilógatjuk felfelé */
+    right: -10px; /* Kicsit kilógatjuk jobbra */
+    background-color: #6ee7b7; /* Menta zöld háttér */
+    color: #064e3b;
+    font-size: 12px;
+    font-weight: bold;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%; /* Tökéletes kör */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

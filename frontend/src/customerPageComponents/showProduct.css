@@ -1,0 +1,284 @@
+/* ============================================================
+   showProduct.css
+   Gyermekruha webshop – Termékoldal + háttér dekorációk
+   ============================================================ */
+
+/* ── OLDAL HÁTTÉR + DEKORÁCIÓK ───────────────────────────── */
+/* product-page-layout: a teljes oldal wrapper */
+.product-page-layout {
+    display: flex;
+    gap: 28px;
+    padding: 28px;
+    width: 100%;
+    box-sizing: border-box;
+    align-items: flex-start;
+    min-height: 100vh;
+    position: relative;
+    background-color: #e8f4fd;
+
+    /* Dekoratív háttérminták – görbék, körök, hullámok mint a képen */
+    background-image:
+        /* Bal felső nagy zöld görbe ív */
+        radial-gradient(ellipse 180px 120px at -40px 60px, rgba(110, 231, 183, 0.35) 0%, transparent 70%),
+        /* Jobb felső sárga körök */
+        radial-gradient(circle 60px at 92% 8%, rgba(253, 224, 71, 0.45) 0%, transparent 70%),
+        radial-gradient(circle 35px at 85% 14%, rgba(253, 224, 71, 0.30) 0%, transparent 70%),
+        /* Jobb oldali nagy rózsaszín kör */
+        radial-gradient(circle 90px at 100% 45%, rgba(249, 168, 212, 0.35) 0%, transparent 70%),
+        /* Bal oldal középső menta folt */
+        radial-gradient(ellipse 130px 80px at -20px 55%, rgba(110, 231, 183, 0.25) 0%, transparent 70%),
+        /* Alul középen kék görbe */
+        radial-gradient(ellipse 200px 80px at 50% 105%, rgba(126, 200, 245, 0.40) 0%, transparent 70%),
+        /* Jobb alsó sárga folt */
+        radial-gradient(circle 70px at 95% 88%, rgba(253, 224, 71, 0.35) 0%, transparent 70%),
+        /* Bal alsó menta */
+        radial-gradient(circle 80px at 2% 90%, rgba(52, 211, 153, 0.25) 0%, transparent 70%),
+        /* Középső halvány kék alap */
+        radial-gradient(ellipse 60% 40% at 60% 30%, rgba(186, 230, 253, 0.20) 0%, transparent 70%);
+}
+
+/* SVG-szerű dekoratív elemek CSS pseudo-elemekkel */
+.product-page-layout::before {
+    content: '';
+    position: fixed;
+    top: -60px;
+    right: -60px;
+    width: 220px;
+    height: 220px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(253, 224, 71, 0.40) 0%, rgba(253, 224, 71, 0.10) 60%, transparent 80%);
+    pointer-events: none;
+    z-index: 0;
+}
+
+.product-page-layout::after {
+    content: '';
+    position: fixed;
+    bottom: -80px;
+    left: 30%;
+    width: 300px;
+    height: 160px;
+    border-radius: 50%;
+    background: radial-gradient(ellipse, rgba(110, 231, 183, 0.30) 0%, transparent 70%);
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* ── TERMÉK TERÜLET ──────────────────────────────────────── */
+.customer-product-container {
+    flex: 1;
+    min-width: 0;
+    position: relative;
+    z-index: 1;
+}
+
+/* Fejléc sor: cím + helyszín */
+.customer-product-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 22px;
+}
+
+.customer-product-title {
+    font-size: 24px;
+    font-weight: 900;
+    color: #111827;
+    margin: 0;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+}
+
+/* Helyszín badge (ha van) */
+.location-badge {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 13px;
+    font-weight: 700;
+    color: #6b7280;
+    background: rgba(255,255,255,0.75);
+    padding: 6px 14px;
+    border-radius: 20px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+}
+
+.location-badge svg,
+.location-badge i {
+    color: #34d399;
+    font-size: 15px;
+}
+
+/* ── TERMÉK RÁCS ─────────────────────────────────────────── */
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(195px, 1fr));
+    gap: 20px;
+}
+
+/* ── TERMÉK KÁRTYA ───────────────────────────────────────── */
+.product-card {
+    background: #ffffff;
+    border: 1px solid rgba(226, 240, 253, 0.8);
+    border-radius: 20px;
+    padding: 12px;
+    box-shadow:
+        0 4px 16px rgba(126, 200, 245, 0.12),
+        0 1px 4px rgba(0, 0, 0, 0.04);
+    transition: transform 0.22s ease, box-shadow 0.22s ease;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    z-index: 1;
+}
+
+.product-card:hover {
+    transform: translateY(-6px);
+    box-shadow:
+        0 16px 40px rgba(126, 200, 245, 0.22),
+        0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+/* ── KÁRTYA KÉP ──────────────────────────────────────────── */
+.product-image-wrapper {
+    width: 100%;
+    margin-bottom: 12px;
+    border-radius: 14px;
+    overflow: hidden;
+    background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+    position: relative;
+}
+
+.product-image {
+    width: 100%;
+    height: 210px;
+    object-fit: cover;
+    display: block;
+    border-radius: 12px;
+    transition: transform 0.3s ease;
+}
+
+.product-card:hover .product-image {
+    transform: scale(1.03);
+}
+
+/* ── NÉV + ÁR SOR ────────────────────────────────────────── */
+.product-info-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 8px;
+    margin-bottom: 10px;
+}
+
+.product-name {
+    font-size: 13px;
+    font-weight: 700;
+    color: #1e293b;
+    margin: 0;
+    line-height: 1.35;
+    flex: 1;
+}
+
+.product-price {
+    font-size: 14px;
+    font-weight: 800;
+    color: #111827;
+    white-space: nowrap;
+    background: #f0fdf4;
+    padding: 3px 8px;
+    border-radius: 10px;
+    color: #065f46;
+}
+
+/* ── SZÍN KÖRÖK ──────────────────────────────────────────── */
+.product-colors {
+    display: flex;
+    gap: 7px;
+    margin-bottom: 14px;
+    flex-wrap: wrap;
+}
+
+.color-swatch {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    cursor: pointer;
+    flex-shrink: 0;
+    border: 1.5px solid rgba(0,0,0,0.10);
+    transition: transform 0.15s ease;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.10);
+}
+
+.color-swatch:hover {
+    transform: scale(1.25);
+}
+
+/* ── GOMB ────────────────────────────────────────────────── */
+.add-to-cart-btn {
+    width: 100%;
+    box-sizing: border-box;
+    text-decoration: none;
+    background: linear-gradient(135deg, #34d399 0%, #10b981 100%);
+    color: #ffffff;
+    border: none;
+    padding: 11px 15px;
+    border-radius: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    font-weight: 800;
+    font-size: 14px;
+    font-family: inherit;
+    transition: all 0.2s ease;
+    margin-top: auto;
+    box-shadow: 0 4px 14px rgba(52, 211, 153, 0.35);
+    letter-spacing: 0.3px;
+}
+
+.add-to-cart-btn:hover {
+    background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+    box-shadow: 0 6px 20px rgba(52, 211, 153, 0.50);
+    transform: translateY(-1px);
+}
+
+.add-to-cart-btn:active {
+    transform: translateY(0);
+}
+
+.btn-text {
+    font-weight: 800;
+    font-size: 14px;
+}
+
+.btn-icon {
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+}
+
+/* ── ÜRES ÁLLAPOT ────────────────────────────────────────── */
+.empty-state-message {
+    text-align: center;
+    padding: 70px 24px;
+    background: rgba(255,255,255,0.80);
+    border-radius: 20px;
+    border: 2px dashed #bae6fd;
+    margin-top: 20px;
+    backdrop-filter: blur(4px);
+}
+
+.empty-state-message h3 {
+    color: #374151;
+    margin-bottom: 12px;
+    font-size: 18px;
+    font-weight: 800;
+}
+
+.empty-state-message p {
+    color: #6b7280;
+    font-size: 14px;
+    line-height: 1.6;
+}

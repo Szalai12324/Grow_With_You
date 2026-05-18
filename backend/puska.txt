@@ -1,0 +1,25 @@
+🟢 Létrehozás (Create)
+.create({ ... }): Egy új sort hoz létre a táblában és azonnal el is menti.
+
+Példa: await User.create({ name: 'Jani', age: 25 });
+
+🔵 Lekérdezés / Olvasás (Read)
+.findAll(): Visszaadja az összes sort a táblából (tömbként).
+
+.findOne({ where: { ... } }): Megkeresi az első olyan elemet, ami megfelel a feltételnek.
+
+Példa: await User.findOne({ where: { email: 'jani@mail.hu' } });
+
+.findByPk(id): "Find by Primary Key". Egy konkrét elemet keres az ID-ja alapján. Nagyon gyors! ⚡
+
+Példa: await User.findByPk(42);
+
+🟠 Frissítés (Update)
+.update({ ... }, { where: { ... } }): Módosítja az adatokat ott, ahol a feltétel teljesül.
+
+Példa: await User.update({ age: 26 }, { where: { name: 'Jani' } });
+
+🔴 Törlés (Delete)
+.destroy({ where: { ... } }): Törli a feltételnek megfelelő sorokat.
+
+Példa: await User.destroy({ where: { id: 42 } });

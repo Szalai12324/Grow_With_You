@@ -1,0 +1,22 @@
+.customer-page {
+    display: flex; 
+    flex-direction: column; /* 🚀 ÚJ VARÁZSSZÓ: Ez mondja meg, hogy egymás ALÁ kerüljön a Navbar és a Tartalom! */
+    min-height: 100vh;
+    width: 100%;
+    background-color: #f8fafc;
+    margin: 0;
+    padding: 0;
+}
+
+.content {
+    flex: 1; /* Ez mondja meg a tartalomnak, hogy nyújtózzon el a maradék üres helyen a Navbar ALATT */
+    padding: 40px;
+    
+    /* ❌ A height: 100vh-t kivettem! Mivel a Navbar is foglal valamennyi helyet feleslegesen túllógna a képernyőn és dupla görgetősávot csinálna. A flex: 1 már tökéletesen megoldja a méretezést! */
+    
+    overflow-y: auto; 
+    box-sizing: border-box;
+    display: flex;
+    justify-content: flex-start; 
+    align-items: flex-start;
+}

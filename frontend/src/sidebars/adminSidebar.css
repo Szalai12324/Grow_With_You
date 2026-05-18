@@ -1,0 +1,58 @@
+/* adminSidebar.css */
+
+.sidebar {
+    width: 250px;
+    height: 100vh;
+    background-color: #ffffff; /* Tiszta fehér háttér */
+    border-right: 1px solid #e5e7eb; /* Finom szürke vonal jobb oldalon, ami elválasztja a tartalomtól */
+    display: flex;
+    flex-direction: column;
+    font-family: Arial, sans-serif;
+}
+
+.sidebar ul {
+    list-style: none;
+    padding: 20px 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.menu-items {
+    padding: 0 12px;
+}
+
+.sidebar li {
+    padding: 10px 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 15px;
+    color: #4b5563; /* Sötétszürke szövegszín */
+    transition: background-color 0.2s;
+}
+
+.sidebar li:hover {
+    background-color: #f3f4f6; /* Nagyon halvány szürke, ha fölé viszed az egeret */
+}
+
+/* Az aktív fül halványkék háttere */
+.sidebar li.active {
+    background-color: #e0f2fe; 
+    color: #0369a1; /* Kicsit sötétebb kék szöveg a kontraszt miatt */
+    font-weight: bold;
+}
+
+.toggle-btn {
+    margin-top: auto;
+    background-color: #ffffff;
+    border: none;
+    border-top: 1px solid #e5e7eb;
+    padding: 15px;
+    cursor: pointer;
+    color: #6b7280;
+}
+
+.toggle-btn:hover {
+    background-color: #f9fafb;
+}
