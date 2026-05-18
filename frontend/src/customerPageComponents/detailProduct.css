@@ -175,10 +175,15 @@
   height: 46px;
   border-radius: 999px;
   border: 1px solid var(--gw-border) !important;
-  box-shadow: 0 5px 14px rgba(47, 29, 65, 0.13);
+  box-shadow: 0 5px 14px rgba(47, 29, 65, 0.13) !important;
   transition:
     transform 200ms var(--gw-ease),
     box-shadow 200ms var(--gw-ease);
+}
+
+.color-item .color-circle[style*="scale(1.15)"] {
+  border: 3px solid var(--gw-brand-coral-dark) !important;
+  box-shadow: 0 8px 18px rgba(222, 160, 157, 0.26) !important;
 }
 
 .color-item:hover .color-circle {
@@ -222,7 +227,26 @@
 
 .size-btn.active {
   background: var(--gw-brand-coral) !important;
+  color: var(--gw-text-main) !important;
+  border-color: var(--gw-border) !important;
   box-shadow: 0 8px 18px rgba(222, 160, 157, 0.22) !important;
+}
+
+.size-btn.active span {
+  color: var(--gw-text-main) !important;
+}
+
+.product-inline-error {
+  margin: 0 0 18px;
+  padding: 13px 16px;
+  border: 1px solid rgba(153, 27, 27, 0.2);
+  border-radius: 18px;
+  background: var(--gw-card-pink);
+  color: var(--gw-text-main);
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 1.35;
+  animation: gw-toast-enter 260ms var(--gw-ease) both;
 }
 
 .add-to-cart-large {

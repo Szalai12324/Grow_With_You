@@ -157,12 +157,17 @@
   height: 32px;
   padding: 0;
   border-radius: 11px;
+  border: 1px solid var(--gw-border) !important;
   cursor: pointer;
   outline: none;
   box-shadow: 0 3px 10px rgba(47, 29, 65, 0.12);
   transition:
     transform 200ms var(--gw-ease),
     box-shadow 200ms var(--gw-ease);
+}
+
+.filter-color-btn[style*="3px solid"] {
+  border: 3px solid var(--gw-brand-coral-dark) !important;
 }
 
 .filter-color-btn:hover {

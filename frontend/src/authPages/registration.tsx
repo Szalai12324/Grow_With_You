@@ -3,17 +3,19 @@ import { useNavigate, Link } from 'react-router-dom';
 import './auth.css';
 
 const Register: React.FC = () => {
-    const navigate = useNavigate(); // Ez fog minket átirányítani másik oldalra
+    const navigate = useNavigate();
     const [formData, setFormData] = useState({ name: '', email: '', password: '' });
     const [error, setError] = useState<string | null>(null);
+    const [successMessage, setSuccessMessage] = useState<string | null>(null);
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
     };
 
     const handleSubmit = async (e: React.FormEvent) => {
-        e.preventDefault(); // Megakadályozza az oldal újratöltését
+        e.preventDefault();
         setError(null);
+        setSuccessMessage(null);
 
         try {
             const response = await fetch('http://localhost:5001/api/auth/register', {
@@ -25,8 +27,10 @@ const Register: React.FC = () => {
             const data = await response.json();
 
             if (response.ok) {
-                alert('Sikeres regisztráció! Kérjük, jelentkezz be.');
-                navigate('/login'); // Sikeres reg után átirányítjuk a loginra!
+                setSuccessMessage('Sikeres regisztráció. Átirányítunk a bejelentkezéshez.');
+                window.setTimeout(() => {
+                    navigate('/login');
+                }, 2200);
             } else {
                 setError(data.error || 'Hiba történt a regisztráció során.');
             }
@@ -37,10 +41,16 @@ const Register: React.FC = () => {
 
     return (
         <div className="auth-container">
+            {successMessage && (
+                <div className="success-toast auth-success-toast" role="status" aria-live="polite">
+                    {successMessage}
+                </div>
+            )}
+
             <div className="auth-card">
                 <h2>Regisztráció</h2>
                 {error && <div className="auth-error">{error}</div>}
-                
+
                 <form onSubmit={handleSubmit}>
                     <div className="form-group">
                         <label>Teljes név</label>
@@ -54,10 +64,10 @@ const Register: React.FC = () => {
                         <label>Jelszó</label>
                         <input type="password" name="password" placeholder="Legalább 6 karakter" value={formData.password} onChange={handleChange} required />
                     </div>
-                    
+
                     <button type="submit" className="auth-btn">Fiók létrehozása</button>
                 </form>
-                
+
                 <p className="auth-footer">
                     Már van fiókod? <Link to="/login">Jelentkezz be itt!</Link>
                 </p>

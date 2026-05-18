@@ -25,6 +25,8 @@ const DetailProduct: React.FC = () => {
     const [activeImageUrl, setActiveImageUrl] = useState<string | null>(null);
     const [selectedColor, setSelectedColor] = useState<string | null>(null);
     const [selectedSize, setSelectedSize] = useState<string | null>(null);
+    const [errorMessage, setErrorMessage] = useState<string | null>(null);
+    const [successMessage, setSuccessMessage] = useState<string | null>(null);
 
     const { id } = useParams<{ id: string }>();
 
@@ -79,41 +81,51 @@ const DetailProduct: React.FC = () => {
         return found ? found.name : hex;
     };
 
+    const showSuccessToast = (message: string) => {
+        setErrorMessage(null);
+        setSuccessMessage(message);
+        window.setTimeout(() => {
+            setSuccessMessage(null);
+        }, 2600);
+    };
+
     return (
        <div className="product-detail-page">
+        {successMessage && (
+            <div className="success-toast product-success-toast" role="status" aria-live="polite">
+                {successMessage}
+            </div>
+        )}
+
         <div className="product-detail-card">
-            
-            {/* BAL OLDAL: Képgaléria (Ez maradt a régi, jól működő kód) */}
             <div className="gallery-section">
                 <div className="main-image-container">
-                    <img 
-                        src={activeImageUrl ? formatImageUrl(activeImageUrl) : formatImageUrl(product?.imageUrls?.[0])} 
-                        alt={product?.name || "Termék"} 
-                        className="main-image" 
+                    <img
+                        src={activeImageUrl ? formatImageUrl(activeImageUrl) : formatImageUrl(product?.imageUrls?.[0])}
+                        alt={product?.name || "Termék"}
+                        className="main-image"
                     />
                 </div>
                 <div className="thumbnail-list">
                     {product ? product.imageUrls?.map((imageUrl, index) => {
                         const isActive = activeImageUrl === imageUrl || (activeImageUrl === null && index === 0);
                         return (
-                            <img 
-                                key={index} 
-                                src={formatImageUrl(imageUrl)} 
-                                className={`thumbnail ${isActive ? 'active' : ''}`} 
-                                alt={`Thumb ${index + 1}`} 
-                                onClick={() => setActiveImageUrl(imageUrl)} 
+                            <img
+                                key={index}
+                                src={formatImageUrl(imageUrl)}
+                                className={`thumbnail ${isActive ? 'active' : ''}`}
+                                alt={`Thumb ${index + 1}`}
+                                onClick={() => setActiveImageUrl(imageUrl)}
                             />
                         );
                     }) : null}
-                </div>              
+                </div>
             </div>
 
-            {/* JOBB OLDAL: Termék adatok */}
             <div className="info-section">
                 <h1 className="product-title">{product?.name || "Betöltés..."}</h1>
                 <h2 className="product-price">{product?.price ? `${product.price} Ft` : ""}</h2>
 
-                {/* Lenyíló leírás (Accordion) */}
                 <div className="product-accordion">
                     <div className="accordion-header">
                         <span>TERMÉKLEÍRÁS</span>
@@ -124,23 +136,21 @@ const DetailProduct: React.FC = () => {
                     </div>
                 </div>
 
-                {/* 4. ÚJ: Dinamikus Színválasztó */}
                 <div className="options-section">
                     <h3 className="options-title">SZÍNEK</h3>
                     <div className="color-grid">
                         {colorsList.map((hexCode, index) => {
                             const isSelected = selectedColor === hexCode;
                             return (
-                                <div 
-                                    key={index} 
-                                    className="color-item" 
+                                <div
+                                    key={index}
+                                    className="color-item"
                                     onClick={() => setSelectedColor(hexCode)}
                                 >
-                                    <div 
-                                        className="color-circle" 
+                                    <div
+                                        className="color-circle"
                                         style={{
                                             backgroundColor: hexCode,
-                                            // Vizuális visszajelzés a kattintásról (Kijelölés kerettel)
                                             border: isSelected ? '3px solid #10b981' : (hexCode.toLowerCase() === '#ffffff' ? '1px solid #ccc' : 'none'),
                                             transform: isSelected ? 'scale(1.15)' : 'scale(1)',
                                             boxShadow: isSelected ? '0 4px 10px rgba(16, 185, 129, 0.3)' : 'none'
@@ -155,7 +165,6 @@ const DetailProduct: React.FC = () => {
                     </div>
                 </div>
 
-                {/* 5. ÚJ: Dinamikus Méret és Készletválasztó */}
                 <div className="options-section">
                     <h3 className="options-title">MÉRETEK</h3>
                     <div className="size-grid">
@@ -165,13 +174,13 @@ const DetailProduct: React.FC = () => {
                             const isSelected = selectedSize === size;
 
                             return (
-                                <button 
+                                <button
                                     key={size}
                                     className={`size-btn ${isSelected ? 'active' : ''}`}
-                                    disabled={isOutOfStock} // Letiltja a gombot, ha 0 a készlet
+                                    disabled={isOutOfStock}
                                     onClick={() => setSelectedSize(size)}
                                     style={{
-                                        opacity: isOutOfStock ? 0.5 : 1, // Elhalványítja, ha kifogyott
+                                        opacity: isOutOfStock ? 0.5 : 1,
                                         cursor: isOutOfStock ? 'not-allowed' : 'pointer',
                                         backgroundColor: isSelected ? '#34d399' : '#ccfbf1',
                                         color: isSelected ? 'white' : '#047857',
@@ -188,15 +197,19 @@ const DetailProduct: React.FC = () => {
                     </div>
                 </div>
 
-                {/* Kosárba gomb */}
-                <button 
+                {errorMessage && (
+                    <div className="product-inline-error" role="alert">
+                        {errorMessage}
+                    </div>
+                )}
+
+                <button
                     className="add-to-cart-large"
-                    // Később ezt a logikát ráköthetjük a valódi kosárra!
                     onClick={() => {
                         if (!selectedColor || !selectedSize) {
-                            alert("Kérlek válassz színt és méretet!");
+                            setErrorMessage("Kérlek válassz színt és méretet!");
                         } else {
-                            alert(`Kosárba téve: ${product?.name} | Szín: ${getColorName(selectedColor)} | Méret: ${selectedSize}`);
+                            showSuccessToast(`Kosárba téve: ${product?.name} | Szín: ${getColorName(selectedColor)} | Méret: ${selectedSize}`);
                         }
                     }}
                 >
