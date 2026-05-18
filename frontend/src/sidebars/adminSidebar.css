@@ -1,58 +1,105 @@
-/* adminSidebar.css */
-
 .sidebar {
-    width: 250px;
-    height: 100vh;
-    background-color: #ffffff; /* Tiszta fehér háttér */
-    border-right: 1px solid #e5e7eb; /* Finom szürke vonal jobb oldalon, ami elválasztja a tartalomtól */
-    display: flex;
-    flex-direction: column;
-    font-family: Arial, sans-serif;
+  width: 260px;
+  height: 100vh;
+  padding: 18px 14px;
+  box-sizing: border-box;
+  border-right: 1px solid var(--gw-border);
+  background:
+    radial-gradient(circle at 12% 8%, rgba(254, 235, 186, 0.42), transparent 12rem),
+    rgba(255, 254, 250, 0.82);
+  box-shadow: 12px 0 38px rgba(47, 29, 65, 0.06);
+  display: flex;
+  flex-direction: column;
+  font-family: "Source Sans 3", system-ui, sans-serif;
+}
+
+.sidebar::before {
+  content: "Grow With You";
+  display: block;
+  margin: 4px 6px 18px;
+  color: #302244;
+  font-family: "Parkinsans", system-ui, sans-serif;
+  font-size: 24px;
+  font-weight: 700;
+  letter-spacing: -0.5px;
 }
 
 .sidebar ul {
-    list-style: none;
-    padding: 20px 0;
-    margin: 0;
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 }
 
 .menu-items {
-    padding: 0 12px;
+  padding: 0;
 }
 
 .sidebar li {
-    padding: 10px 16px;
-    border-radius: 6px;
-    cursor: pointer;
-    font-size: 15px;
-    color: #4b5563; /* Sötétszürke szövegszín */
-    transition: background-color 0.2s;
+  padding: 12px 14px;
+  border: 1px solid transparent;
+  border-radius: 999px;
+  cursor: pointer;
+  color: rgba(26, 25, 23, 0.72);
+  font-size: 16px;
+  font-weight: 600;
+  transition:
+    background-color 220ms var(--gw-ease),
+    border-color 220ms var(--gw-ease),
+    color 220ms var(--gw-ease),
+    transform 220ms var(--gw-ease);
 }
 
 .sidebar li:hover {
-    background-color: #f3f4f6; /* Nagyon halvány szürke, ha fölé viszed az egeret */
+  background: rgba(234, 184, 181, 0.16);
+  color: var(--gw-text-main);
+  transform: translateX(2px);
 }
 
-/* Az aktív fül halványkék háttere */
 .sidebar li.active {
-    background-color: #e0f2fe; 
-    color: #0369a1; /* Kicsit sötétebb kék szöveg a kontraszt miatt */
-    font-weight: bold;
+  border-color: var(--gw-border);
+  background: var(--gw-brand-coral);
+  color: var(--gw-text-main);
+  font-weight: 700;
+  box-shadow: 0 8px 18px rgba(222, 160, 157, 0.2);
 }
 
 .toggle-btn {
-    margin-top: auto;
-    background-color: #ffffff;
-    border: none;
-    border-top: 1px solid #e5e7eb;
-    padding: 15px;
-    cursor: pointer;
-    color: #6b7280;
+  margin-top: auto;
+  padding: 13px 16px;
+  border: 1px solid var(--gw-border);
+  border-radius: 999px;
+  background: rgba(255, 254, 250, 0.72);
+  color: var(--gw-text-main);
+  cursor: pointer;
+  font-weight: 700;
+  transition:
+    background-color 220ms var(--gw-ease),
+    transform 220ms var(--gw-ease);
 }
 
 .toggle-btn:hover {
-    background-color: #f9fafb;
+  background: var(--gw-bg-footer);
+  transform: translateY(-1px);
+}
+
+@media (max-width: 760px) {
+  .sidebar {
+    width: 100%;
+    height: auto;
+    border-right: none;
+    border-bottom: 1px solid var(--gw-border);
+  }
+
+  .sidebar ul {
+    flex-direction: row;
+    overflow-x: auto;
+    padding-bottom: 2px;
+  }
+
+  .sidebar li {
+    white-space: nowrap;
+  }
 }

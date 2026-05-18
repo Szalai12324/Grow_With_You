@@ -1,284 +1,333 @@
-/* ============================================================
-   showProduct.css
-   Gyermekruha webshop – Termékoldal + háttér dekorációk
-   ============================================================ */
-
-/* ── OLDAL HÁTTÉR + DEKORÁCIÓK ───────────────────────────── */
-/* product-page-layout: a teljes oldal wrapper */
 .product-page-layout {
-    display: flex;
-    gap: 28px;
-    padding: 28px;
-    width: 100%;
-    box-sizing: border-box;
-    align-items: flex-start;
-    min-height: 100vh;
-    position: relative;
-    background-color: #e8f4fd;
-
-    /* Dekoratív háttérminták – görbék, körök, hullámok mint a képen */
-    background-image:
-        /* Bal felső nagy zöld görbe ív */
-        radial-gradient(ellipse 180px 120px at -40px 60px, rgba(110, 231, 183, 0.35) 0%, transparent 70%),
-        /* Jobb felső sárga körök */
-        radial-gradient(circle 60px at 92% 8%, rgba(253, 224, 71, 0.45) 0%, transparent 70%),
-        radial-gradient(circle 35px at 85% 14%, rgba(253, 224, 71, 0.30) 0%, transparent 70%),
-        /* Jobb oldali nagy rózsaszín kör */
-        radial-gradient(circle 90px at 100% 45%, rgba(249, 168, 212, 0.35) 0%, transparent 70%),
-        /* Bal oldal középső menta folt */
-        radial-gradient(ellipse 130px 80px at -20px 55%, rgba(110, 231, 183, 0.25) 0%, transparent 70%),
-        /* Alul középen kék görbe */
-        radial-gradient(ellipse 200px 80px at 50% 105%, rgba(126, 200, 245, 0.40) 0%, transparent 70%),
-        /* Jobb alsó sárga folt */
-        radial-gradient(circle 70px at 95% 88%, rgba(253, 224, 71, 0.35) 0%, transparent 70%),
-        /* Bal alsó menta */
-        radial-gradient(circle 80px at 2% 90%, rgba(52, 211, 153, 0.25) 0%, transparent 70%),
-        /* Középső halvány kék alap */
-        radial-gradient(ellipse 60% 40% at 60% 30%, rgba(186, 230, 253, 0.20) 0%, transparent 70%);
+  display: grid;
+  grid-template-columns: 280px minmax(0, 1fr);
+  gap: 32px;
+  width: min(1200px, calc(100% - 32px));
+  min-height: calc(100vh - 120px);
+  margin: 28px auto 96px;
+  padding: 0;
+  box-sizing: border-box;
+  align-items: flex-start;
+  position: relative;
 }
 
-/* SVG-szerű dekoratív elemek CSS pseudo-elemekkel */
+.product-page-layout::before,
+.product-page-layout::after {
+  content: "";
+  position: fixed;
+  pointer-events: none;
+  z-index: 0;
+  border-radius: 999px;
+  filter: blur(1px);
+}
+
 .product-page-layout::before {
-    content: '';
-    position: fixed;
-    top: -60px;
-    right: -60px;
-    width: 220px;
-    height: 220px;
-    border-radius: 50%;
-    background: radial-gradient(circle, rgba(253, 224, 71, 0.40) 0%, rgba(253, 224, 71, 0.10) 60%, transparent 80%);
-    pointer-events: none;
-    z-index: 0;
+  top: 9rem;
+  right: -5rem;
+  width: 18rem;
+  height: 18rem;
+  background: rgba(255, 211, 221, 0.42);
 }
 
 .product-page-layout::after {
-    content: '';
-    position: fixed;
-    bottom: -80px;
-    left: 30%;
-    width: 300px;
-    height: 160px;
-    border-radius: 50%;
-    background: radial-gradient(ellipse, rgba(110, 231, 183, 0.30) 0%, transparent 70%);
-    pointer-events: none;
-    z-index: 0;
+  bottom: -4rem;
+  left: 14vw;
+  width: 22rem;
+  height: 13rem;
+  background: rgba(226, 239, 240, 0.7);
 }
 
-/* ── TERMÉK TERÜLET ──────────────────────────────────────── */
 .customer-product-container {
-    flex: 1;
-    min-width: 0;
-    position: relative;
-    z-index: 1;
-}
-
-/* Fejléc sor: cím + helyszín */
-.customer-product-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 22px;
+  min-width: 0;
+  position: relative;
+  z-index: 1;
 }
 
 .customer-product-title {
-    font-size: 24px;
-    font-weight: 900;
-    color: #111827;
-    margin: 0;
-    text-transform: uppercase;
-    letter-spacing: 0.8px;
+  position: relative;
+  margin: 4px 0 26px;
+  color: var(--gw-text-main);
+  font-family: "Parkinsans", system-ui, sans-serif;
+  font-size: clamp(30px, 4vw, 44px);
+  font-weight: 600;
+  line-height: 1.12;
+  letter-spacing: -0.8px;
+  text-transform: none;
 }
 
-/* Helyszín badge (ha van) */
+.customer-product-title::after {
+  content: "Valogatott, premium babaruhak";
+  display: block;
+  width: fit-content;
+  margin-top: 12px;
+  padding: 7px 14px;
+  border: 1px solid rgba(222, 160, 157, 0.22);
+  border-radius: 999px;
+  background: rgba(255, 254, 250, 0.7);
+  color: rgba(26, 25, 23, 0.72);
+  font-family: "Caveat Brush", cursive;
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 1.2;
+  letter-spacing: -0.2px;
+  text-transform: uppercase;
+}
+
 .location-badge {
-    display: flex;
-    align-items: center;
-    gap: 5px;
-    font-size: 13px;
-    font-weight: 700;
-    color: #6b7280;
-    background: rgba(255,255,255,0.75);
-    padding: 6px 14px;
-    border-radius: 20px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  width: fit-content;
+  padding: 7px 14px;
+  border: 1px solid var(--gw-border);
+  border-radius: 999px;
+  background: rgba(255, 254, 250, 0.76);
+  color: var(--gw-text-desc);
+  font-size: 14px;
+  font-weight: 600;
+  box-shadow: 0 8px 24px rgba(47, 29, 65, 0.05);
 }
 
 .location-badge svg,
 .location-badge i {
-    color: #34d399;
-    font-size: 15px;
+  color: var(--gw-brand-coral-dark);
 }
 
-/* ── TERMÉK RÁCS ─────────────────────────────────────────── */
 .product-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(195px, 1fr));
-    gap: 20px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+  gap: 22px;
 }
 
-/* ── TERMÉK KÁRTYA ───────────────────────────────────────── */
 .product-card {
-    background: #ffffff;
-    border: 1px solid rgba(226, 240, 253, 0.8);
-    border-radius: 20px;
-    padding: 12px;
-    box-shadow:
-        0 4px 16px rgba(126, 200, 245, 0.12),
-        0 1px 4px rgba(0, 0, 0, 0.04);
-    transition: transform 0.22s ease, box-shadow 0.22s ease;
-    display: flex;
-    flex-direction: column;
-    position: relative;
-    z-index: 1;
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+  padding: 12px;
+  border: 1px solid var(--gw-border);
+  border-radius: 24px;
+  background: rgba(255, 254, 250, 0.82);
+  box-shadow: 0 10px 30px rgba(47, 29, 65, 0.055);
+  overflow: hidden;
+  transition:
+    transform 260ms var(--gw-ease),
+    box-shadow 260ms var(--gw-ease),
+    border-color 260ms var(--gw-ease),
+    background-color 260ms var(--gw-ease);
+}
+
+.product-card:nth-child(3n + 1) {
+  background: linear-gradient(180deg, rgba(254, 235, 186, 0.26), rgba(255, 254, 250, 0.86) 42%);
+}
+
+.product-card:nth-child(3n + 2) {
+  background: linear-gradient(180deg, rgba(226, 239, 240, 0.5), rgba(255, 254, 250, 0.86) 42%);
+}
+
+.product-card:nth-child(3n) {
+  background: linear-gradient(180deg, rgba(255, 211, 221, 0.34), rgba(255, 254, 250, 0.86) 42%);
 }
 
 .product-card:hover {
-    transform: translateY(-6px);
-    box-shadow:
-        0 16px 40px rgba(126, 200, 245, 0.22),
-        0 4px 12px rgba(0, 0, 0, 0.08);
+  transform: translateY(-5px) rotate(-0.4deg);
+  border-color: rgba(222, 160, 157, 0.36);
+  box-shadow: var(--gw-shadow-card);
 }
 
-/* ── KÁRTYA KÉP ──────────────────────────────────────────── */
 .product-image-wrapper {
-    width: 100%;
-    margin-bottom: 12px;
-    border-radius: 14px;
-    overflow: hidden;
-    background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
-    position: relative;
+  width: 100%;
+  margin-bottom: 14px;
+  border-radius: 18px;
+  overflow: hidden;
+  background: var(--gw-bg-beige);
+  position: relative;
+  border: 1px solid rgba(26, 25, 23, 0.08);
 }
 
 .product-image {
-    width: 100%;
-    height: 210px;
-    object-fit: cover;
-    display: block;
-    border-radius: 12px;
-    transition: transform 0.3s ease;
+  width: 100%;
+  height: 230px;
+  object-fit: cover;
+  display: block;
+  border-radius: inherit;
+  transition: transform 420ms var(--gw-ease);
 }
 
 .product-card:hover .product-image {
-    transform: scale(1.03);
+  transform: scale(1.035);
 }
 
-/* ── NÉV + ÁR SOR ────────────────────────────────────────── */
 .product-info-row {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    gap: 8px;
-    margin-bottom: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 12px;
+  margin-bottom: 12px;
 }
 
 .product-name {
-    font-size: 13px;
-    font-weight: 700;
-    color: #1e293b;
-    margin: 0;
-    line-height: 1.35;
-    flex: 1;
+  flex: 1;
+  margin: 0;
+  color: var(--gw-text-main);
+  font-family: "Source Sans 3", system-ui, sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1.25;
 }
 
 .product-price {
-    font-size: 14px;
-    font-weight: 800;
-    color: #111827;
-    white-space: nowrap;
-    background: #f0fdf4;
-    padding: 3px 8px;
-    border-radius: 10px;
-    color: #065f46;
+  white-space: nowrap;
+  margin: 0;
+  padding: 5px 10px;
+  border: 1px solid rgba(26, 25, 23, 0.1);
+  border-radius: 999px;
+  background: var(--gw-card-yellow);
+  color: var(--gw-text-main);
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1;
 }
 
-/* ── SZÍN KÖRÖK ──────────────────────────────────────────── */
 .product-colors {
-    display: flex;
-    gap: 7px;
-    margin-bottom: 14px;
-    flex-wrap: wrap;
+  display: flex;
+  gap: 7px;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
 }
 
 .color-swatch {
-    width: 18px;
-    height: 18px;
-    border-radius: 50%;
-    cursor: pointer;
-    flex-shrink: 0;
-    border: 1.5px solid rgba(0,0,0,0.10);
-    transition: transform 0.15s ease;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.10);
+  width: 19px;
+  height: 19px;
+  border-radius: 999px;
+  cursor: pointer;
+  flex-shrink: 0;
+  border: 1px solid rgba(26, 25, 23, 0.18) !important;
+  transition:
+    transform 180ms var(--gw-ease),
+    box-shadow 180ms var(--gw-ease);
+  box-shadow: 0 2px 7px rgba(47, 29, 65, 0.12);
 }
 
 .color-swatch:hover {
-    transform: scale(1.25);
+  transform: translateY(-2px) scale(1.12);
+  box-shadow: 0 6px 14px rgba(47, 29, 65, 0.16);
 }
 
-/* ── GOMB ────────────────────────────────────────────────── */
 .add-to-cart-btn {
-    width: 100%;
-    box-sizing: border-box;
-    text-decoration: none;
-    background: linear-gradient(135deg, #34d399 0%, #10b981 100%);
-    color: #ffffff;
-    border: none;
-    padding: 11px 15px;
-    border-radius: 30px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 8px;
-    cursor: pointer;
-    font-weight: 800;
-    font-size: 14px;
-    font-family: inherit;
-    transition: all 0.2s ease;
-    margin-top: auto;
-    box-shadow: 0 4px 14px rgba(52, 211, 153, 0.35);
-    letter-spacing: 0.3px;
+  width: 100%;
+  box-sizing: border-box;
+  margin-top: auto;
+  padding: 13px 18px;
+  border: 1px solid var(--gw-border);
+  border-radius: 999px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  background: var(--gw-brand-coral);
+  color: var(--gw-text-main);
+  text-decoration: none;
+  cursor: pointer;
+  font-family: "Source Sans 3", system-ui, sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: 0;
+  box-shadow: 0 8px 18px rgba(222, 160, 157, 0.24);
+  transition:
+    background-color 220ms var(--gw-ease),
+    transform 220ms var(--gw-ease),
+    box-shadow 220ms var(--gw-ease);
 }
 
 .add-to-cart-btn:hover {
-    background: linear-gradient(135deg, #10b981 0%, #059669 100%);
-    box-shadow: 0 6px 20px rgba(52, 211, 153, 0.50);
-    transform: translateY(-1px);
+  background: var(--gw-brand-coral-dark);
+  box-shadow: 0 10px 22px rgba(222, 160, 157, 0.28);
+  transform: translateY(-1px);
 }
 
 .add-to-cart-btn:active {
-    transform: translateY(0);
+  transform: translateY(0) scale(0.985);
 }
 
 .btn-text {
-    font-weight: 800;
-    font-size: 14px;
+  font-size: inherit;
+  font-weight: inherit;
 }
 
 .btn-icon {
-    font-size: 18px;
-    display: flex;
-    align-items: center;
+  font-size: 18px;
+  display: flex;
+  align-items: center;
 }
 
-/* ── ÜRES ÁLLAPOT ────────────────────────────────────────── */
 .empty-state-message {
-    text-align: center;
-    padding: 70px 24px;
-    background: rgba(255,255,255,0.80);
-    border-radius: 20px;
-    border: 2px dashed #bae6fd;
-    margin-top: 20px;
-    backdrop-filter: blur(4px);
+  text-align: center;
+  padding: 70px 28px;
+  margin-top: 20px;
+  border: 1px dashed rgba(26, 25, 23, 0.2);
+  border-radius: 28px;
+  background: rgba(255, 254, 250, 0.72);
+  box-shadow: var(--gw-shadow-soft);
 }
 
 .empty-state-message h3 {
-    color: #374151;
-    margin-bottom: 12px;
-    font-size: 18px;
-    font-weight: 800;
+  margin: 0 0 12px;
+  color: var(--gw-text-main);
+  font-family: "Parkinsans", system-ui, sans-serif;
+  font-size: 22px;
+  font-weight: 600;
+  line-height: 1.25;
 }
 
 .empty-state-message p {
-    color: #6b7280;
-    font-size: 14px;
-    line-height: 1.6;
+  margin: 0;
+  color: var(--gw-text-desc);
+  font-size: 17px;
+  line-height: 1.5;
+}
+
+@media (max-width: 940px) {
+  .product-page-layout {
+    grid-template-columns: 1fr;
+    gap: 24px;
+    width: calc(100% - 28px);
+  }
+
+  .product-grid {
+    grid-template-columns: repeat(auto-fill, minmax(175px, 1fr));
+    gap: 16px;
+  }
+}
+
+@media (max-width: 560px) {
+  .product-page-layout {
+    margin-top: 22px;
+    width: calc(100% - 20px);
+  }
+
+  .product-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+
+  .product-card {
+    border-radius: 20px;
+    padding: 9px;
+  }
+
+  .product-image {
+    height: 170px;
+  }
+
+  .product-info-row {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .product-name {
+    font-size: 15px;
+  }
 }

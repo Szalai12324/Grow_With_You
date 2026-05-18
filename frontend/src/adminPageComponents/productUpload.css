@@ -1,185 +1,189 @@
-/* productUpload.css */
-
 .product-upload-container {
-    background-color: #ffffff; /* Tiszta fehér kártya */
-    padding: 50px;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03); /* Finom árnyék, mint a modern adminokon */
-    border: 1px solid #e5e7eb;
-    max-width: 900px;
-    margin: 0 auto;
-    font-family: Arial, sans-serif;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 38px;
+  border: 1px solid var(--gw-border);
+  border-radius: 28px;
+  background: rgba(255, 254, 250, 0.78);
+  box-shadow: 0 12px 34px rgba(47, 29, 65, 0.07);
+  font-family: "Source Sans 3", system-ui, sans-serif;
 }
 
 .product-upload-title {
-    color: #1f2937;
-    margin-top: 0;
-    margin-bottom: 25px;
-    font-size: 22px;
-    border-bottom: 1px solid #e5e7eb; /* Elválasztó vonal a cím alatt */
-    padding-bottom: 15px;
+  margin: 0 0 26px;
+  padding-bottom: 18px;
+  border-bottom: 1px solid var(--gw-border-soft);
+  color: var(--gw-text-main);
+  font-family: "Parkinsans", system-ui, sans-serif;
+  font-size: 30px;
+  font-weight: 600;
+  line-height: 1.16;
+  letter-spacing: -0.5px;
 }
 
 .product-upload-form {
-    display: flex;
-    flex-direction: column;
-    gap: 20px; /* Távolság a mezők között */
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }
 
-/* Sorba rendező konténer (hogy pl. az ár és készlet egymás mellett legyen) */
 .form-row {
-    display: flex;
-    gap: 15px;
-    width: 100%;
+  display: flex;
+  gap: 16px;
+  width: 100%;
 }
 
-.half-width { flex: 1; }
-.third-width { flex: 1; }
+.half-width,
+.third-width {
+  flex: 1;
+}
 
 .form-group {
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 }
 
 .form-group label {
-    font-size: 14px;
-    font-weight: bold;
-    color: #4b5563; /* Sötétszürke feliratok */
+  color: var(--gw-text-main);
+  font-size: 15px;
+  font-weight: 700;
 }
 
-.form-input, .form-textarea {
-    padding: 10px 14px;
-    border: 1px solid #d1d5db;
-    border-radius: 6px;
-    font-size: 14px;
-    color: #1f2937;
-    background-color: #fcfcfc;
-    transition: all 0.2s ease;
+.form-input,
+.form-textarea {
+  box-sizing: border-box;
+  width: 100%;
+  padding: 12px 15px;
+  border: 1px solid var(--gw-border);
+  border-radius: 18px;
+  color: var(--gw-text-main);
+  background: rgba(255, 254, 250, 0.88);
+  font-size: 15px;
+  transition:
+    border-color 200ms var(--gw-ease),
+    box-shadow 200ms var(--gw-ease),
+    background-color 200ms var(--gw-ease);
 }
 
-/* Amikor belekattintasz a mezőbe */
-.form-input:focus, .form-textarea:focus {
-    outline: none;
-    border-color: #0ea5e9; /* Szép kék keret */
-    background-color: #ffffff;
-    box-shadow: 0 0 0 3px rgba(14, 165, 233, 0.15); /* Kék ragyogás körülötte */
+.form-input:focus,
+.form-textarea:focus {
+  outline: none;
+  border-color: var(--gw-brand-coral-dark);
+  background: var(--gw-white);
+  box-shadow: 0 0 0 4px rgba(234, 184, 181, 0.2);
 }
 
 .form-textarea {
-    min-height: 100px;
-    resize: vertical; /* Csak függőlegesen lehessen húzni */
+  min-height: 118px;
+  resize: vertical;
 }
 
-/* A fájl tallózó gomb dizájnolása */
 .file-input {
-    font-size: 14px;
-    color: #4b5563;
-    cursor: pointer;
+  color: var(--gw-text-desc);
+  cursor: pointer;
+  font-size: 15px;
 }
 
 .file-input::file-selector-button {
-    padding: 8px 16px;
-    border-radius: 6px;
-    border: 1px solid #d1d5db;
-    background-color: #f9fafb;
-    color: #4b5563;
-    font-weight: bold;
-    cursor: pointer;
-    margin-right: 15px;
-    transition: background-color 0.2s;
+  margin-right: 14px;
+  padding: 10px 16px;
+  border: 1px solid var(--gw-border);
+  border-radius: 999px;
+  background: var(--gw-bg-footer);
+  color: var(--gw-text-main);
+  cursor: pointer;
+  font-weight: 700;
+  transition: background-color 200ms var(--gw-ease);
 }
 
 .file-input::file-selector-button:hover {
-    background-color: #e5e7eb;
+  background: rgba(234, 184, 181, 0.28);
 }
 
-/* A kiválasztott képek listája */
 .image-preview-list {
-    background-color: #f8fafc;
-    border: 1px dashed #cbd5e1;
-    border-radius: 6px;
-    padding: 10px 15px;
+  padding: 14px 16px;
+  border: 1px dashed rgba(26, 25, 23, 0.24);
+  border-radius: 20px;
+  background: rgba(246, 243, 240, 0.72);
 }
 
 .image-preview-list p {
-    margin: 0 0 8px 0;
-    font-size: 13px;
-    font-weight: bold;
-    color: #64748b;
+  margin: 0 0 8px;
+  color: var(--gw-text-main);
+  font-size: 14px;
+  font-weight: 700;
 }
 
 .image-preview-list ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
 }
 
 .image-preview-list li {
-    font-size: 13px;
-    color: #334155;
+  color: var(--gw-text-desc);
+  font-size: 14px;
 }
 
-/* A nagy beküldés gomb */
 .submit-button {
-    margin-top: 15px;
-    padding: 12px;
-    background-color: #0369a1; /* Ugyanaz a kék, mint a menü aktív szövege */
-    color: white;
-    border: none;
-    border-radius: 6px;
-    font-weight: bold;
-    font-size: 16px;
-    cursor: pointer;
-    transition: background-color 0.2s, transform 0.1s;
+  margin-top: 15px;
+  padding: 13px 20px;
+  border: 1px solid var(--gw-border);
+  border-radius: 999px;
+  background: var(--gw-brand-coral);
+  color: var(--gw-text-main);
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 700;
+  box-shadow: 0 10px 20px rgba(222, 160, 157, 0.22);
+  transition:
+    background-color 220ms var(--gw-ease),
+    transform 220ms var(--gw-ease),
+    box-shadow 220ms var(--gw-ease);
 }
 
 .submit-button:hover {
-    background-color: #0284c7; /* Kicsit sötétebb kék hoverre */
+  background: var(--gw-brand-coral-dark);
+  transform: translateY(-1px);
+  box-shadow: 0 12px 24px rgba(222, 160, 157, 0.28);
 }
 
 .submit-button:active {
-    transform: scale(0.98); /* Kattintáskor picit összemegy */
+  transform: translateY(0) scale(0.985);
 }
 
-/* --- ÚJ ÉRTESÍTÉS DIZÁJN --- */
 .custom-notification {
-    padding: 12px 20px;
-    margin-bottom: 20px;
-    border-radius: 6px;
-    color: white;
-    font-weight: bold;
-    font-size: 14px;
-    text-align: center;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-    
-    /* Pici animáció, hogy fentről csússzon be */
-    animation: slideDown 0.3s ease-out;
+  padding: 13px 18px;
+  margin-bottom: 20px;
+  border-radius: 18px;
+  color: var(--gw-text-main);
+  font-weight: 700;
+  font-size: 15px;
+  text-align: center;
+  animation: slideDown 320ms var(--gw-ease);
 }
 
-/* Sikeres zöld */
 .custom-notification.success {
-    background-color: #10b981; 
-    border: 1px solid #059669;
+  border: 1px solid rgba(26, 25, 23, 0.12);
+  background: var(--gw-card-blue);
 }
 
-/* Hibás piros */
 .custom-notification.error {
-    background-color: #ef4444; 
-    border: 1px solid #b91c1c;
+  border: 1px solid rgba(153, 27, 27, 0.24);
+  background: var(--gw-card-pink);
 }
 
-/* Az animáció logikája */
-@keyframes slideDown {
-    from {
-        opacity: 0;
-        transform: translateY(-10px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+@media (max-width: 700px) {
+  .product-upload-container {
+    padding: 22px;
+    border-radius: 24px;
+  }
+
+  .form-row {
+    flex-direction: column;
+  }
 }
